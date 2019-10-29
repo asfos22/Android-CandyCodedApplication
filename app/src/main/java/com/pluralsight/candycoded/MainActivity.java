@@ -85,19 +85,22 @@ public class MainActivity extends AppCompatActivity {
     // TODO - Task 1 - Show Store Information Activity
     // ***
     //-- options item selected
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.info:
-                // -- execute info class to show store information activity
-                startInfoActivityIntent();
-                break;
 
-            default:
-                break;
+        int id = item.getItemId();
+
+        if (id == R.id.info) {
+            // -- execute info class to show store information activity
+            startInfoActivityIntent();
+            return true;
         }
-         return super.onOptionsItemSelected(item);
+
+        return super.onOptionsItemSelected(item);
     }
+
+
 
     // the info activity class intent method
     private void startInfoActivityIntent() {
