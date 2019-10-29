@@ -13,8 +13,6 @@ import com.squareup.picasso.Picasso;
 
 public class InfoActivity extends AppCompatActivity {
 
-    TextView phoneTextView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,28 +24,6 @@ public class InfoActivity extends AppCompatActivity {
                 load(uri).
                 into(candyStoreImageView);
 
-        // init
-
-        phoneTextView = (TextView) findViewById(R.id.text_view_phone);
-
-        // -- event set On click listener
-
-        //-- click on phone TextView event
-        phoneTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (phoneTextView.getText().toString().isEmpty()) {
-                    // -- phone not available
-                    Toast.makeText(getApplicationContext(), getString(R.string.phone_not_available), Toast.LENGTH_LONG).show();
-                } else {
-                    // -- Launch the Phone Activity method
-                    launchPhoneActivity(phoneTextView.getText().toString());
-                }
-
-
-            }
-        });
 
 
     }
@@ -72,6 +48,20 @@ public class InfoActivity extends AppCompatActivity {
     // ***
     // TODO - Task 3 - Launch the Phone Activity
     // ***
+
+    public void createPhoneIntent(View view){
+
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:0123456789"));
+        startActivity(intent);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            // -- map available
+            startActivity(intent);
+        }
+
+
+    }
 
 
     void launchPhoneActivity(String phoneNumber) {
