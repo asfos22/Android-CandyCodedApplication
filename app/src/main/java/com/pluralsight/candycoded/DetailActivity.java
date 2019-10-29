@@ -86,7 +86,7 @@ public class DetailActivity extends AppCompatActivity {
             default:
                 break;
         }
-        return true;
+         return super.onOptionsItemSelected(item);
     }
 
     // - share candy method
