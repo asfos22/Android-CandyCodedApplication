@@ -29,8 +29,8 @@ public class InfoActivity extends AppCompatActivity {
 
         // init
 
-        googleMapTextView = findViewById(R.id.text_view_address);
-        phoneTextView = findViewById(R.id.text_view_phone);
+        googleMapTextView = (TextView) findViewById(R.id.text_view_address);
+        phoneTextView = (TextView) findViewById(R.id.text_view_phone);
 
         // -- event set On click listener
         //-- click on Address TextView event
