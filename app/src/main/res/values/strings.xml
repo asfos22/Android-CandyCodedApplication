@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Candy Coded</string>
     <string name="products_title">Products</string>
+    <string name="install_map_desc">Please install Google map</string>
+    <string name="address_not_available">Address not available</string>
+    <string name="phone_not_available">Phone number not available</string>
 </resources>
