@@ -93,7 +93,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.info) {
             // -- execute info class to show store information activity
-            startInfoActivityIntent();
+            // the info activity class intent method
+            Intent infoIntent = new Intent(this, InfoActivity.class);
+            startActivity(infoIntent);
+
             return true;
         }
 
@@ -101,13 +104,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    // the info activity class intent method
-    private void startInfoActivityIntent() {
-
-        Intent infoActivityIntent = new Intent(this, InfoActivity.class);
-        startActivity(infoActivityIntent);
-    }
+    ;
 
 
     private void addCandiesToDatabase(Candy[] candies) {
