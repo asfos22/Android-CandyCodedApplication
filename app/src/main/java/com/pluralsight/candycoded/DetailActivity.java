@@ -76,14 +76,18 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // - share candy method
+        createShareIntent();
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void createShareIntent() {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         String shareString = SHARE_DESCRIPTION + mCandyImageUrl + HASHTAG_CANDYCODED;
         shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareString);
         startActivity(shareIntent);
 
-        return super.onOptionsItemSelected(item);
-    }
 
+    }
 
 }
