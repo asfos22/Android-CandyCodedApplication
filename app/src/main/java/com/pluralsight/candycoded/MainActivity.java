@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
-        return true;
+         return super.onOptionsItemSelected(item);
     }
 
     // the info activity class intent method
