@@ -1,6 +1,5 @@
 package com.pluralsight.candycoded;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +13,7 @@ import com.squareup.picasso.Picasso;
 
 public class InfoActivity extends AppCompatActivity {
 
-    TextView googleMapTextView, phoneTextView;
+    TextView phoneTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,25 +28,9 @@ public class InfoActivity extends AppCompatActivity {
 
         // init
 
-        googleMapTextView = (TextView) findViewById(R.id.text_view_address);
         phoneTextView = (TextView) findViewById(R.id.text_view_phone);
 
         // -- event set On click listener
-        //-- click on Address TextView event
-        googleMapTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (googleMapTextView.getText().toString().isEmpty()) {
-                    // -- address not available
-                    Toast.makeText(getApplicationContext(), getString(R.string.address_not_available), Toast.LENGTH_LONG).show();
-                } else {
-                    //--Launch the Google Maps Activity method
-                    launchGoogleMapsActivity(googleMapTextView.getText().toString());
-                }
-
-            }
-        });
 
         //-- click on phone TextView event
         phoneTextView.setOnClickListener(new View.OnClickListener() {
@@ -69,31 +52,21 @@ public class InfoActivity extends AppCompatActivity {
 
     }
 
+
     // ***
     // TODO - Task 2 - Launch the Google Maps Activity
     // ***
+    public void createMapIntent(View view) {
 
-    void launchGoogleMapsActivity(String addressLocation) {
+        Uri uriAddress = Uri.parse("geo:0,0?q=618 E South St Orlando, FL");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, uriAddress);
+        mapIntent.setPackage("com.google.android.apps.maps");
 
-        Intent googleMapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?q=" + addressLocation.toString()));
-        googleMapIntent.setClassName("com.google.android.apps.maps",
-                "com.google.android.maps.MapsActivity");
-        // -- catch any error
-        try {
-
-            if (googleMapIntent.resolveActivity(getPackageManager()) != null) {
-                // -- map available
-                startActivity(googleMapIntent);
-            } else {
-                // -- hey  there map not available
-                Toast.makeText(getApplicationContext(), getString(R.string.install_map_desc), Toast.LENGTH_LONG).show();
-            }
-            // catch error
-        } catch (ActivityNotFoundException ex) {
-
-            Toast.makeText(getApplicationContext(), ex.toString(), Toast.LENGTH_LONG).show();
-
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            // -- map available
+            startActivity(mapIntent);
         }
+
     }
 
     // ***
